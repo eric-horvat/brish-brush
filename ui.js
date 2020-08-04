@@ -1,11 +1,18 @@
 'use strict';
 const React = require('react');
-const {Text} = require('ink');
+const {Text, Box} = require('ink');
 
-const Brushing = () => {
+const Brushing = (time, color, text) => {
+	return (<Box>
+		<Text color="green" bold>{time}</Text>
+		<Text color={color}>{text}</Text>
+	</Box>);
+}
+
+const App = () => {
 	const [counter, setCounter] = React.useState(0);
 	const prepTime = 6;
-	const brushingTime = 60;
+	const brushingTime = 120;
 	const congratulationTime = 10;
 
 	React.useEffect(() => {
@@ -26,10 +33,11 @@ const Brushing = () => {
 		return <Text color="blue">Brush!</Text>;
 	else {
 		if (counter < prepTime + brushingTime) {
+			var secondsLeft = (brushingTime-(counter-prepTime))/2;
 			if (counter % 2 == 0)
-				return <Text color="green" bold>brish</Text>;
+				return Brushing(secondsLeft, 'green', ' brish');
 			else
-				return <Text color="blue" >     brush</Text>;
+				return Brushing(secondsLeft - 0.5, 'blue',  '      brush');
 		}
 		else if (counter < prepTime + brushingTime + congratulationTime)
 			return <Text color="green" >Great brushing! Make sure to brush every morning and night</Text>;
@@ -37,4 +45,4 @@ const Brushing = () => {
 	}
 };
 
-module.exports = Brushing;
+module.exports = App;
