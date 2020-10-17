@@ -7,7 +7,8 @@
 		"node": ">=10"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"test": "xo && ava",
+		"dev": "node cli.js"
 	},
 	"files": [
 		"cli.js",
